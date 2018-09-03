@@ -58,6 +58,12 @@ keystone.set('nav', {
 	users: 'users',
 });
 
+if (keystone.get('env') == 'production'){
+    keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
+    keystone.set('cookie secret', process.env.COOKIE_SECRET);
+    keystone.set('mandrill api key', process.env.MANDRILL_API_KEY);
+}
+
 // Start Keystone to connect to your database and initialise the web server
 
 
