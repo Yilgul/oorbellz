@@ -1,0 +1,172 @@
+<div class="container">
+
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12">
+      <article class="showcase">
+        <p><a href="/products">&larr; Terug naar overzicht</a></p>
+        <hr>
+        <header>
+         
+        </header>
+        <div class="row">         
+          <div class="col-md-6 col-lg-6">
+            <div id="slider" class="slider">
+              <div class="wrapper"> 
+                <div id="items" class="items">  
+                <span class="slide"><img src="{{cloudinaryUrl product.dragend }}"></span>
+                <span class="slide"><img src="{{cloudinaryUrl product.los }}"></span>
+              </div>
+            </div>
+            <a id="prev" class="control prev"></a>
+            <a id="next" class="control next"></a>
+          </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <ul class="list-group">
+             <h1>{{product.naam}}</h1>
+                <h3 class="Alegre">€ {{product.prijs}}</h3>           
+            </ul>
+            <div class="well productWell Alegre">
+                
+              {{{product.omschrijving}}}
+            </div>
+               
+            
+              <div class="buttonAnim" onclick="add_to_cart('{{product.naam}}','{{product._id}}','{{product.prijs}}')">
+                  <div class="svg-wrapper">
+                    <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+                      <rect class="shape" height="60" width="320" />
+                    </svg>
+              <div class="text">SHOP BAG</div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  
+var slider = document.getElementById('slider'),
+    sliderItems = document.getElementById('items'),
+    prev = document.getElementById('prev'),
+    next = document.getElementById('next');
+
+slide(slider, sliderItems, prev, next);
+
+function slide(wrapper, items, prev, next) {
+  var posX1 = 0,
+      posX2 = 0,
+      posInitial,
+      posFinal,
+      threshold = 100,
+      slides = items.getElementsByClassName('slide'),
+      slidesLength = slides.length,
+      slideSize = items.getElementsByClassName('slide')[0].offsetWidth,
+      firstSlide = slides[0],
+      lastSlide = slides[slidesLength - 1],
+      cloneFirst = firstSlide.cloneNode(true),
+      cloneLast = lastSlide.cloneNode(true),
+      index = 0,
+      allowShift = true;
+  
+  // Clone first and last slide
+  items.appendChild(cloneFirst);
+  items.insertBefore(cloneLast, firstSlide);
+  wrapper.classList.add('loaded');
+  
+  // Mouse and Touch events
+  items.onmousedown = dragStart;
+  
+  // Touch events
+  items.addEventListener('touchstart', dragStart);
+  items.addEventListener('touchend', dragEnd);
+  items.addEventListener('touchmove', dragAction);
+  
+  // Click events
+  prev.addEventListener('click', function () { shiftSlide(-1) });
+  next.addEventListener('click', function () { shiftSlide(1) });
+  
+  // Transition events
+  items.addEventListener('transitionend', checkIndex);
+  
+  function dragStart (e) {
+    e = e || window.event;
+    e.preventDefault();
+    posInitial = items.offsetLeft;
+    
+    if (e.type == 'touchstart') {
+      posX1 = e.touches[0].clientX;
+    } else {
+      posX1 = e.clientX;
+      document.onmouseup = dragEnd;
+      document.onmousemove = dragAction;
+    }
+  }
+
+  function dragAction (e) {
+    e = e || window.event;
+    
+    if (e.type == 'touchmove') {
+      posX2 = posX1 - e.touches[0].clientX;
+      posX1 = e.touches[0].clientX;
+    } else {
+      posX2 = posX1 - e.clientX;
+      posX1 = e.clientX;
+    }
+    items.style.left = (items.offsetLeft - posX2) + "px";
+  }
+  
+  function dragEnd (e) {
+    posFinal = items.offsetLeft;
+    if (posFinal - posInitial < -threshold) {
+      shiftSlide(1, 'drag');
+    } else if (posFinal - posInitial > threshold) {
+      shiftSlide(-1, 'drag');
+    } else {
+      items.style.left = (posInitial) + "px";
+    }
+
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+  
+  function shiftSlide(dir, action) {
+    items.classList.add('shifting');
+    
+    if (allowShift) {
+      if (!action) { posInitial = items.offsetLeft; }
+
+      if (dir == 1) {
+        items.style.left = (posInitial - slideSize) + "px";
+        index++;      
+      } else if (dir == -1) {
+        items.style.left = (posInitial + slideSize) + "px";
+        index--;      
+      }
+    };
+    
+    allowShift = false;
+  }
+    
+  function checkIndex (){
+    items.classList.remove('shifting');
+
+    if (index == -1) {
+      items.style.left = -(slidesLength * slideSize) + "px";
+      index = slidesLength - 1;
+    }
+
+    if (index == slidesLength) {
+      items.style.left = -(1 * slideSize) + "px";
+      index = 0;
+    }
+    
+    allowShift = true;
+  }
+}
+</script>

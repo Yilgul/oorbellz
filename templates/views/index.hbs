@@ -1,0 +1,52 @@
+{{!< default}}
+<img class="logo" src="/images/makeup.png" width="160"></default>
+
+
+<div class="container">
+<div class="row">
+  <div class="col-sm-12">
+</div>
+	<div class="bird-container bird-container--one">
+		<div class="bird bird--one"></div>
+	</div>
+	
+	<div class="bird-container bird-container--two">
+		<div class="bird bird--two"></div>
+	</div>
+	</div>
+
+  <div class="text-overlap" data-splitting>O<b>O</b>R<b>B</b>E<b>L</b>L<b>Z</b></div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="welcome">
+				<h1>Welkom bij Sweet Little Things!!</h1>
+				<h5>Leuk dat je bij ons komt kijken.. </h5>
+			</div>
+		</div>
+	</div>
+
+<div class="row">
+	<div class="col-lg-12">
+        {{# each products}}
+		<div class="set" style="background:url({{{ cloudinaryUrl los }}})">
+            <div class="get">
+            <a href="/product/{{ _id }}">
+			<img src="{{{ cloudinaryUrl  dragend }}}" class="adsPhoto splash">
+            </div>
+            <div class="descriptionwrap">
+			<div class="name">{{{ naam }}}</div>
+			<div class="price">€ {{{ prijs }}}</div>
+            </a>
+			<div class="inCart" onclick="add_to_cart('{{ naam }}','{{ id }}','{{ prijs }})">
+        <span class="glyphicon glyphicon-shopping-cart id=totalCorner"></span>
+        </div>
+			</div>
+		</div>
+        {{/each}}
+	</div>
+</div>
+</div>
+</div>
+	</div>
+</div>

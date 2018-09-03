@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <h4 class="Alegre">Winkelmand overzicht</h4>
+
+      <h1 class="BadScript">Uw aankoop wordt in behandeling genomen.</h1>
+
+
+ <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="Alegre panel-title">Overzicht van uw bestellingen bij CLT:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            
+                            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">                                     
+                                <strong>{{ id }}</strong><br>
+                                <dl>
+                                    <dt>User level:</dt>
+                                    <dd>Administrator</dd>
+                                    <dt>Registered since:</dt>
+                                    <dd>11/12/2013</dd>
+                                    <dt>Topics</dt>
+                                    <dd>15</dd>
+                                    <dt>Warnings</dt>
+                                    <dd>0</dd>
+                                </dl>
+                            </div>
+                            
+                            {{#each orders}}
+                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                <strong>Order ID: {{id}}</strong>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>Artikelen:</td>
+                                        <td>{{ producten }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Betaald:</td>
+                                        <td>{{ betaald }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bedrag:</td>
+                                        <td>{{ bedrag}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Betaaldatum:</td>
+                                        <td> {{ betaalDatum }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-sm btn-primary" type="button"
+                                data-toggle="tooltip"
+                                data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                        <span class="pull-right">
+                            <button class="btn btn-sm btn-warning" type="button"
+                                    data-toggle="tooltip"
+                                    data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i></button>
+                            <button class="btn btn-sm btn-danger" type="button"
+                                    data-toggle="tooltip"
+                                    data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i></button>
+                        </span>
+                    </div>
+
+
