@@ -5836,7 +5836,14 @@ button.close {
 	background: linear-gradient(to bottom, rgba(181,225,240,1) 0%, rgba(181,225,240,0.5) 50%, rgba(181,225,240,0.49) 51%, rgba(181,225,240,0.29) 71%, rgba(181,225,240,0) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b5e1f0', endColorstr='#b5e1f0', GradientType=0 ); */
   background: white;
-  height: 120px; }
+  height: 120px;
+  z-index: 9999; }
+
+.navbar-default .navbar-nav a {
+  background: white; }
+
+.navbar-collapse {
+  z-index: 999; }
 
 .Alegre {
   font-family: 'Alegreya Sans', sans-serif; }
@@ -5857,17 +5864,19 @@ button.close {
 
 .navbar {
   font-size: 20px;
-  background: transparent;
+  background: white;
   color: black;
   border-radius: 0;
   border: 1px solid transparent;
-  font-family: 'Alegreya Sans', sans-serif; }
+  font-family: 'Alegreya Sans', sans-serif;
+  margin: 5px;
+  z-index: 999; }
 
 .navbar li {
-  background: transparent; }
+  background: white; }
 
 .active {
-  background: transparent; }
+  background: white; }
 
 #totaalprijs {
   margin-top: 10px;
