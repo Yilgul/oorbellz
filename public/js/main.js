@@ -33,15 +33,11 @@ $(document).ready(function(){
 function add_to_cart(productNaam,productId,productPrijs){   
 
   $('#alertBanner').show();
-
-  var total = Number($('#sach').html());
- 
+  var total = Number($('#sach').html()); 
   total += Number(productPrijs);
-
 	$.get("/cartadd?product_id="+ productId, function(string) {
-
     $('#sach').html(total); 
-
+    window.location.href = "/";
 	})	
 ;} 
 

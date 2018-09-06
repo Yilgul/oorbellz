@@ -16,13 +16,13 @@ exports = module.exports = function(req, res) {
 
         console.log("MyCartaaaa:" + mycart_pro_ids);
 
-        name =  req.user.name.first + " " + req.user.name.last
-        id = req.user._id;
+        name =  "Test";/* req.user.name.first + " " + req.user.name.last */
+        id =  "123"/* req.user._id; */
         console.log(id);
         date = Date.now();
         
         var newOrder = Order.model({
-                ID: req.user._id,
+                ID: id/* req.user._id */,
                 klant: name, 
                 producten: cartProductenNaam,
                 bedrag: locals.sachincount,
